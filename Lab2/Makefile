@@ -1,4 +1,4 @@
-APP_PATH = /home/egor/Документы/Semestr2/Programing/Lab2/src
+APP_PATH = ~/Programing2023/Lab2/src
 
 all: vector
 
