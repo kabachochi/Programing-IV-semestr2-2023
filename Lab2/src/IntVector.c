@@ -19,7 +19,7 @@ vector *int_vector_new(size_t initial_capacity)
     }
     else
     {
-        printf("Не удалось выделить память под вектор\n");
+        printf("Не удалось выделить память под структуру\n");
         return NULL;
     }
 }
@@ -33,15 +33,23 @@ vector *int_vector_copy(const vector *v)
         bob->size = v->size;
         bob->capacity = v->capacity;
         bob->data = malloc(sizeof(int) * bob->capacity);
-        for (int i = 0; i < bob->capacity; i++)
+        if (bob->data != NULL)
         {
-            bob->data[i] = v->data[i];
+            for (int i = 0; i < bob->capacity; i++)
+            {
+                bob->data[i] = v->data[i];
+            }
+            return bob;
         }
-        return bob;
+        else 
+        {
+            printf("Не удалось выделить память под массив\n");
+            return NULL;
+        }
     }
     else
     {
-        printf("Не удалось выделить память под массив\n");
+        printf("Не удалось выделить память под структуру\n");
         return NULL;
     }
 }
@@ -99,7 +107,11 @@ int int_vector_shrink_to_fit(vector *v)
     { 
         v->capacity = v->size;
         v->data = realloc(v->data, v->capacity * sizeof(int));
-        return 0;
+        if (v->data != NULL)
+            return 0;
+        else
+            printf("Не удалось выделить память под массив!\n");
+            return -1;
     }
     else
         return -1;
@@ -130,11 +142,15 @@ int int_vector_resize(vector *v, size_t new_size)
 
 int int_vector_reserve(vector *v, size_t new_capacity)
 {
-    if (new_capacity > v->capacity && new_capacity != 0)
+    if (new_capacity > v->capacity && new_capacity > 0)
     {
         v->capacity = new_capacity;
         v->data = realloc(v->data, new_capacity * sizeof(int));
-        return 0;
+        if (v->data != NULL)
+            return 0;
+        else
+            printf("Не удалось выделить память под массив!\n");
+            return -1;
     }
     else
     {
