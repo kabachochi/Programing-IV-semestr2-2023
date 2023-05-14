@@ -15,7 +15,7 @@ int mein_strlen(char *string) // correct
 
 char *mein_strcpy(char *string1, char *string2) // correct
 {
-    if (string2 == NULL)
+    if (string1 == NULL)
     {
         return NULL;
     }
