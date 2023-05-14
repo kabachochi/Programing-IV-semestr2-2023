@@ -180,7 +180,7 @@ int mein_atoi(char *string) // correct
 
 char *mein_suffix(char *string, char symbol) // correct
 {
-    while (*string != '\\')
+    while (*string != '\\' && *string != '\0')
     {
         string++;
     }
